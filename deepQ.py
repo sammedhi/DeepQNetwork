@@ -28,24 +28,26 @@ class DeepQ:
         ################################# CONV LAYERS ##########################################
         with tf.variable_scope(tf.get_variable_scope(), reuse=reuse):
             with tf.variable_scope("CONV1"):
+                '''
                 conv1 = utilNN.conv(self.s ,
                                     kernel_size = 8 ,
-                                    nb_kernel = 32,
+                                    nb_kernel = 8,
                                     in_channel = self.input_shape[2],
                                     strides = [1 , 4 , 4 , 1])
+                '''
 
             with tf.variable_scope("CONV2"):
-                conv2 = utilNN.conv(conv1 ,
+                conv2 = utilNN.conv(self.s ,
                                     kernel_size = 4 ,
-                                    nb_kernel = 64,
-                                    in_channel = 32,
+                                    nb_kernel = 8,
+                                    in_channel = self.input_shape[2],
                                     strides = [1 , 2 , 2 , 1])
 
             with tf.variable_scope("CONV3"):
                 conv3 = utilNN.conv(conv2 ,
                                     kernel_size = 3 ,
-                                    nb_kernel = 64,
-                                    in_channel = 64,
+                                    nb_kernel = 16,
+                                    in_channel = 8,
                                     strides = [1 , 1 , 1 , 1])
             ################################# FC LAYERS ##########################################
             shape_input_fc = conv3.shape[1] * conv3.shape[2] * conv3.shape[3]
